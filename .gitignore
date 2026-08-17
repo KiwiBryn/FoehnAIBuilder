@@ -361,3 +361,13 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Delete.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Dotnet.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.ExecuteAsync.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.ExecuteSync.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Mkdir.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.ReadFile.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Rename.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Rmdir.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Scan.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.WriteFile.dll
