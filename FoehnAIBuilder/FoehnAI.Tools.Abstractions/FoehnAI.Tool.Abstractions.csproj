@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>Shared plugin contract for FoehnSharp tools (ITool) loaded by FoehnSharpV1 at startup.</Description>
+  </PropertyGroup>
+
+</Project>

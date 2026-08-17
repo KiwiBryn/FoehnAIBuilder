@@ -1,0 +1,15 @@
+<Solution>
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Abstractions/FoehnAI.Tool.Abstractions.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Delete/FoehnAI.Tools.Delete.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Dotnet/FoehnAI.Tools.Dotnet.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.ExecuteAsync/FoehnAI.Tools.ExecuteAsync.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.ExecuteSync/FoehnAI.Tools.ExecuteSync.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Mkdir/FoehnAI.Tools.Mkdir.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.ReadFile/FoehnAI.Tools.ReadFile.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Rename/FoehnAI.Tools.Rename.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Rmdir/FoehnAI.Tools.Rmdir.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.Scan/FoehnAI.Tools.Scan.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.WriteFile/FoehnAI.Tools.WriteFile.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAIBuilder/FoehnAIBuilder.csproj" />
+  <Project Path="FoehnAIBuilder/MistralAI.Client.Mistral/MistralAI.Client.Mistral.csproj" />
+</Solution>
