@@ -1,5 +1,6 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using Microsoft.Extensions.Logging;
 
 namespace FoehnAI.Tools.Rename;
 
