@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.ExecuteAsync;
+namespace FoehnAI.Tools.ExecuteAsync;
 
 internal sealed class ExecuteDetachedArguments
 {

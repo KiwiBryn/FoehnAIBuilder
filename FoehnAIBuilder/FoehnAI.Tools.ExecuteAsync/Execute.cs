@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.ExecuteAsync;
+using FoehnAI.Tools.ExecuteAsync;
 using Microsoft.Extensions.Logging;
 
 namespace FoehnAIBuilder.Tools.ExecuteAsync;
