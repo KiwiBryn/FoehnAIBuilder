@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.WriteFile;
+namespace FoehnAI.Tools.WriteFile;
 
 internal sealed class WriteFileArguments
 {

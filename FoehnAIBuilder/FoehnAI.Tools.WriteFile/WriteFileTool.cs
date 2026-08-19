@@ -1,7 +1,7 @@
 using FoehnAIBuilder.Abstractions;
 using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.WriteFile;
+namespace FoehnAI.Tools.WriteFile;
 
 /// <summary>
 /// Writes text content to a file, creating the file (and any missing parent
