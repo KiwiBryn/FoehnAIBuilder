@@ -1,9 +1,10 @@
 using System.Text;
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.SearchFiles;
+using FoehnAI.Tools.SearchFiles;
 using Microsoft.Extensions.Logging;
 
-namespace FoehnAIBuilder.Tools.SearchFiles;
+
+namespace FoehnAI.Tools.SearchFiles;
 
 /// <summary>
 /// Searches file contents under a directory tree for a text substring, so the LLM can

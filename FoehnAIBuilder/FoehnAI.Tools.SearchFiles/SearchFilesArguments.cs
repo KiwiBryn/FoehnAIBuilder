@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.SearchFiles;
+namespace FoehnAI.Tools.SearchFiles;
 
 internal sealed class SearchFilesArguments
 {
