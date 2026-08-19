@@ -1,8 +1,7 @@
-using System.ComponentModel;
-using System.Diagnostics;
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
 using FoehnAI.Tools.ExecuteAsync;
-using Microsoft.Extensions.Logging;
 
 namespace FoehnAIBuilder.Tools.ExecuteAsync;
 

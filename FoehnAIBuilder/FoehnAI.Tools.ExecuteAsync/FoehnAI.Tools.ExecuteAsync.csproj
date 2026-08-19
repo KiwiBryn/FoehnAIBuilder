@@ -24,18 +24,22 @@
     <ProjectReference Include="..\FoehnAI.Tools.Abstractions\FoehnAI.Tool.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="System.ComponentModel" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Text.Json.Serialization" />
+  </ItemGroup>
+
   <Target Name="CopyToHostPlugins" AfterTargets="Build">
      <PropertyGroup>
         <HostPluginsDir>$(MSBuildThisFileDirectory)..\FoehnAIBuilder\.plugins\</HostPluginsDir>
      </PropertyGroup>
      <ItemGroup>
         <PluginOutputFiles Include="$(TargetPath)" />
-        <PluginOutputFiles Include="$(TargetDir)$(TargetName).pdb"
-                           Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+        <PluginOutputFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
      </ItemGroup>
      <MakeDir Directories="$(HostPluginsDir)" />
-     <Copy SourceFiles="@(PluginOutputFiles)"
-           DestinationFolder="$(HostPluginsDir)"
-           SkipUnchangedFiles="true" />  </Target>
+     <Copy SourceFiles="@(PluginOutputFiles)" DestinationFolder="$(HostPluginsDir)" SkipUnchangedFiles="true" />  </Target>
 
 </Project>
