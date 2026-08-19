@@ -1,7 +1,7 @@
 using FoehnAIBuilder.Abstractions;
 using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.Rename;
+namespace FoehnAI.Tools.Rename;
 
 /// <summary>
 /// Renames or moves a file from one path to another.

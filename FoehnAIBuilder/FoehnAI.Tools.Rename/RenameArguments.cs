@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.Rename;
+namespace FoehnAI.Tools.Rename;
 
 internal sealed class RenameArguments
 {
