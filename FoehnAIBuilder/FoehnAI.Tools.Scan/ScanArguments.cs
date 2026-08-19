@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.Scan;
+namespace FoehnAI.Tools.Scan;
 
 internal sealed class ScanArguments
 {

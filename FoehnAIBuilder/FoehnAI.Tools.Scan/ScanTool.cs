@@ -1,6 +1,6 @@
 using System.Text;
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.Scan;
+using FoehnAI.Tools.Scan;
 using Microsoft.Extensions.Logging;
 
 namespace FoehnAIBuilder.Tools.Scan;
