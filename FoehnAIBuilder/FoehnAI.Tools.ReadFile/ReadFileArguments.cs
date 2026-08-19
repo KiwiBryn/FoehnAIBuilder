@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.ReadFile;
+namespace FoehnAI.Tools.ReadFile;
 
 internal sealed class ReadFileArguments
 {

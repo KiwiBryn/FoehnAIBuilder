@@ -1,5 +1,5 @@
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.ReadFile;
+using FoehnAI.Tools.ReadFile;
 using Microsoft.Extensions.Logging;
 
 namespace FoehnAIBuilder.Tools.ReadFile;
