@@ -1,5 +1,5 @@
-using System.Text.Json.Serialization;
-
+// Copyright (c) August 2026, devMobile Software
+// 
 namespace FoehnAI.Tools.ReadFile;
 
 internal sealed class ReadFileArguments
