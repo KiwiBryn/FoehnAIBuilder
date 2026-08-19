@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.Rmdir;
+namespace FoehnAI.Tools.Rmdir;
 
 internal sealed class RmdirArguments
 {
