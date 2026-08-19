@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.Delete;
+namespace FoehnAI.Tools.Delete;
 
 internal sealed class DeleteArguments
 {

@@ -1,7 +1,7 @@
 using FoehnAIBuilder.Abstractions;
 using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.Delete;
+namespace FoehnAI.Tools.Delete;
 
 /// <summary>
 /// Deletes a single file.

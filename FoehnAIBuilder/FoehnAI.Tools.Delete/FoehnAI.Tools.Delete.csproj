@@ -5,9 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <Description>FoehnSharp tool plugin: deletes a file.</Description>
+    <Description>FoehnAI tool plugin: deletes a file.</Description>
     <Authors>Bryn Lewis</Authors>
-    <Title>FohenAI tool for deleting files</Title>
+    <Title>FoehnAI tool for deleting files</Title>
     <Company>devMobile Software</Company>
     <Product>FoehnAI</Product>
     <Copyright>devmobile Software (c) 2026</Copyright>
