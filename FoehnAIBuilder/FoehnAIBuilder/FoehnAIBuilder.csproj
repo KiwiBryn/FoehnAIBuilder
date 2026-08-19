@@ -34,6 +34,7 @@
     <Using Include="Microsoft.Extensions.Logging" />
     <Using Include="Microsoft.Extensions.Options" />
     <Using Include="System.Reflection" />
+    <Using Include="System.Runtime.Loader" />
     <Using Include="System.Text.Json" />
   </ItemGroup>
 
