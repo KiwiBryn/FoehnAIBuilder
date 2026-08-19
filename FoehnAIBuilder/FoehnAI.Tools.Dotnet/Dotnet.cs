@@ -57,8 +57,7 @@ public sealed class DotnetTool : ITool
         }
         """;
 
-   // The command is arbitrary and its effects aren't known ahead of time, so treat it 
-   // as the most cautious tier - the same as delete/rmdir.
+   // The dotnet tool is "scoped" so for now not treated as a "destructive"
    public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
 
    public async Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
