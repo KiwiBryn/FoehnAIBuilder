@@ -1,8 +1,6 @@
-using System.Text;
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using FoehnAI.Tools.SearchFiles;
-using Microsoft.Extensions.Logging;
-
 
 namespace FoehnAI.Tools.SearchFiles;
 

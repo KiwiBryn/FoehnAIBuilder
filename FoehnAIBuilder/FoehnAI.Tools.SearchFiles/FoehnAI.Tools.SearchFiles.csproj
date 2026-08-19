@@ -25,6 +25,12 @@
     <ProjectReference Include="..\FoehnAI.Tools.Abstractions\FoehnAI.Tool.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="System.Text" />
+    <Using Include="System.Text.Json.Serialization" />
+  </ItemGroup>
+
   <!--
     Plugins are discovered by FoehnAIV1 scanning a flat "Plugins" folder for DLLs.
     Copy only this project's own primary output there (never its dependency DLLs -
@@ -37,13 +43,10 @@
       </PropertyGroup>
       <ItemGroup>
          <PluginOutputFiles Include="$(TargetPath)" />
-         <PluginOutputFiles Include="$(TargetDir)$(TargetName).pdb"
-                            Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+         <PluginOutputFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
       </ItemGroup>
       <MakeDir Directories="$(HostPluginsDir)" />
-      <Copy SourceFiles="@(PluginOutputFiles)"
-            DestinationFolder="$(HostPluginsDir)"
-            SkipUnchangedFiles="true" />
+      <Copy SourceFiles="@(PluginOutputFiles)" DestinationFolder="$(HostPluginsDir)" SkipUnchangedFiles="true" />
    </Target>
 
 
