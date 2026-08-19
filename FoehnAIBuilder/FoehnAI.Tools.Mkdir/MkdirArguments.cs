@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.Mkdir;
+namespace FoehnAI.Tools.Mkdir;
 
 internal sealed class MkdirArguments
 {
