@@ -7,4 +7,9 @@
     <Description>Shared plugin contract for FoehnAI tools (ITool) loaded by FoehnAI at startup.</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Using Include="System.Text.Json" />
+    <Using Include="System.Text.Json.Serialization.Metadata" />
+  </ItemGroup>
+
 </Project>

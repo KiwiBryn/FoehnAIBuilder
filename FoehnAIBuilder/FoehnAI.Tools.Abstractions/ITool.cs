@@ -1,3 +1,5 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 namespace FoehnAIBuilder.Abstractions;
 
 /// <summary>
