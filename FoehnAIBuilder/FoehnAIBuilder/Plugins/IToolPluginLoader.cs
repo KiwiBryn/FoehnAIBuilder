@@ -1,3 +1,5 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
 
 namespace FoehnAIBuilder.Plugins;

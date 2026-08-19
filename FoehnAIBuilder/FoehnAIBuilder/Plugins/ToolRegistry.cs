@@ -1,6 +1,6 @@
-using System.Text.Json;
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using Microsoft.Extensions.Logging;
 using MistralAI.Client.DTOs.Shared;
 
 namespace FoehnAIBuilder.Plugins;

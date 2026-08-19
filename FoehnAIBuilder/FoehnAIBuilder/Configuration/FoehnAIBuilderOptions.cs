@@ -1,3 +1,5 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 namespace FoehnAIBuilder.Configuration;
 
 /// <summary>
@@ -16,14 +18,14 @@ public sealed class FoehnAIBuilderOptions
     /// </summary>
     public string PluginsPath { get; set; } = ".Plugins";
 
-    /// <summary>
-    /// Working directory tools should operate in when a path isn't explicitly rooted.
-    /// Empty means "use the process's current directory".
-    /// </summary>
-    public string WorkingDirectory { get; set; } = string.Empty;
+   /// <summary>
+   /// Working directory tools should operate in when a path isn't explicitly rooted.
+   /// Empty means "use the process's current directory".
+   /// </summary>
+   public string WorkingDirectory { get; set; } = string.Empty;
 
     /// <summary>
-    /// Maximum number of tool-call round trips per user message before FoehnSharp gives
+    /// Maximum number of tool-call round trips per user message before FoehnAI gives
     /// up and returns whatever the model last said, to guard against infinite loops.
     /// </summary>
     public int MaxToolIterations { get; set; } = 25;

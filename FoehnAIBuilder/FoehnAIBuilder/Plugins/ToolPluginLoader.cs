@@ -1,11 +1,8 @@
-using System.Reflection;
+// Copyright (c) August 2026, devMobile Software
+// 
 using System.Runtime.Loader;
 using FoehnAIBuilder.Abstractions;
-using FoehnAIBuilder.Plugins;
 using FoehnAIBuilder.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace FoehnAIBuilder.Plugins;
 

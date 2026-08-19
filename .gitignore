@@ -371,3 +371,4 @@ FodyWeavers.xsd
 /FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Rmdir.dll
 /FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.Scan.dll
 /FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.WriteFile.dll
+/FoehnAIBuilder/FoehnAIBuilder/.plugins/FoehnAI.Tools.SearchFiles.dll

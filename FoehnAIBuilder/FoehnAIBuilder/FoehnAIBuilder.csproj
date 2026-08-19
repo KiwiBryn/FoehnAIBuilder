@@ -24,17 +24,17 @@
   <!-- FoehnBlunt is its own standalone project living under this folder; exclude it so
        its files don't get swept into FoehnSharpV1's own compilation. -->
   <ItemGroup>
-    <Compile Remove="FoehnBlunt\**" />
-    <Content Remove="FoehnBlunt\**" />
-    <EmbeddedResource Remove="FoehnBlunt\**" />
-    <None Remove="FoehnBlunt\**" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FoehnAI.Tools.Abstractions\FoehnAI.Tool.Abstractions.csproj" />
     <ProjectReference Include="..\MistralAI.Client.Mistral\MistralAI.Client.Mistral.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Using Include="Microsoft.Extensions.Configuration" />
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Microsoft.Extensions.Hosting" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="Microsoft.Extensions.Options" />
     <Using Include="System.Reflection" />
+    <Using Include="System.Text.Json" />
   </ItemGroup>
 
 </Project>

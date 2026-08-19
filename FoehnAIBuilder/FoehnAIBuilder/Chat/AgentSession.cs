@@ -1,8 +1,8 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
 using FoehnAIBuilder.Configuration;
 using FoehnAIBuilder.Plugins;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MistralAI.Client;
 using MistralAI.Client.DTOs.Shared;
 
@@ -123,7 +123,7 @@ public sealed class AgentSession
         }
 
         _logger.LogWarning("Reached the maximum of {MaxToolIterations} tool iterations without a final answer.", _options.MaxToolIterations);
-        return "[FoehnSharp stopped: reached the maximum number of tool call iterations without a final answer.]";
+        return "[FoehnAI stopped: reached the maximum number of tool call iterations without a final answer.]";
     }
 
     private static void PrintIndented(string text)
