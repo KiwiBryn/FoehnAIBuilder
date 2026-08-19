@@ -1,11 +1,8 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Configuration;
 using FoehnAIBuilder.Plugins;
 using FoehnAIBuilder.Chat;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MistralAI.Client;
 using MistralAI.Client.DTOs.Shared;
 
@@ -20,7 +17,11 @@ const string SouthernAlps20x20 = @"
 /_/  \     \_/      \_\
 devMobile Software NZ © 2026-08";
 
-var builder = Host.CreateApplicationBuilder(args);
+var builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
+{
+   Args = args,
+   ContentRootPath = AppContext.BaseDirectory,
+});
 
 // Public settings live in appsettings.json; the Mistral API key is kept out of source
 // control in .NET User Secrets (dotnet user-secrets set "Mistral:ApiKey" "...").
@@ -64,7 +65,7 @@ if (string.IsNullOrWhiteSpace(mistralOptions.ApiKey))
 {
    Console.WriteLine("No Mistral API key configured.");
    Console.WriteLine("Set one with:");
-   Console.WriteLine("  dotnet user-secrets set \"Mistral:ApiKey\" \"<your-key>\" --project FoehnSharpV1");
+   Console.WriteLine("  dotnet user-secrets set \"Mistral:ApiKey\" \"<your-key>\" --project FoehnAI");
    return 1;
 }
 
@@ -109,7 +110,7 @@ while (!cts.IsCancellationRequested)
       var reply = await session.SendAsync(input, cts.Token);
       Console.WriteLine("-> Message processed.");
       Console.WriteLine();
-      Console.WriteLine($"FoehnSharp: {reply}");
+      Console.WriteLine($"FoehnAI: {reply}");
       Console.WriteLine();
    }
    catch (OperationCanceledException)
