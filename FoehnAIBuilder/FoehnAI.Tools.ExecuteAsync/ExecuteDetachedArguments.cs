@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
-
-namespace FoehnSharp.Tools.ExecuteAsync;
+// Copyright (c) August 2026, devMobile Software
+// 
+namespace FoehnAI.Tools.ExecuteAsync;
 
 internal sealed class ExecuteDetachedArguments
 {

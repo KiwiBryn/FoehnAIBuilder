@@ -1,7 +1,8 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.Delete;
+namespace FoehnAI.Tools.Delete;
 
 /// <summary>
 /// Deletes a single file.

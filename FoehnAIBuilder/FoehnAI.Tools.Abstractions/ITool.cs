@@ -1,7 +1,9 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 namespace FoehnAIBuilder.Abstractions;
 
 /// <summary>
-/// Contract implemented by every FoehnSharp tool plugin DLL. FoehnAI scans its
+/// Contract implemented by every FoehnAI tool plugin DLL. FoehnAI scans its
 /// plugins directory at   startup, loads every assembly it finds, and registers every
 /// public, non-abstract type that implements this interface so the Mistral LLM can
 /// invoke it as a function-calling tool.

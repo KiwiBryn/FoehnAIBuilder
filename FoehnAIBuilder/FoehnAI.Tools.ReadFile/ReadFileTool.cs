@@ -1,6 +1,7 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.ReadFile;
-using Microsoft.Extensions.Logging;
+using FoehnAI.Tools.ReadFile;
 
 namespace FoehnAIBuilder.Tools.ReadFile;
 

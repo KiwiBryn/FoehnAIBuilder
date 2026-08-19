@@ -1,7 +1,8 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.Rmdir;
+namespace FoehnAI.Tools.Rmdir;
 
 /// <summary>
 /// Removes a directory, optionally including everything inside it.

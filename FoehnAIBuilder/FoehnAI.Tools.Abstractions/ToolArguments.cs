@@ -1,6 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization.Metadata;
-
+// Copyright (c) August 2026, devMobile Software
+// 
 namespace FoehnAIBuilder.Abstractions;
 
 /// <summary>

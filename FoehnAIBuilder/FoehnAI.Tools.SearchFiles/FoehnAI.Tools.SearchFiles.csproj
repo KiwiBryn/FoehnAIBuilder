@@ -5,15 +5,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
      <VersionPrefix>1.0.0</VersionPrefix>
-     <Description>FoehnAI tool plugin: runs dotnet commandline application.</Description>
+     <Description>FoehnAI tool plugin: searches file contents under a directory tree for a text substring.</Description>
      <Authors>Bryn Lewis</Authors>
-     <Title>FoehnAI tool for running dotnet </Title>
+     <Title>FoehnAI tool for scanning directories</Title>
      <Company>devMobile Software</Company>
      <Product>FoehnAI</Product>
      <Copyright>devmobile Software (c) 2026</Copyright>
      <PackageProjectUrl></PackageProjectUrl>
      <RepositoryUrl>https://github.com/KiwiBryn/FoehnAIBuilder</RepositoryUrl>
-     <PackageTags>mistral, mistralAI, AI, Agentic</PackageTags>
+     <PackageTags>mistral, mistralAI, AI, Agentic</PackageTags>     
+    <BaseOutputPath>C:\Users\BrynLewis\source\repos\FoehnAIBuilder\src\FoehnAIBuilder\FoehnAIBuilder\.Plugins</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,12 +27,16 @@
 
   <ItemGroup>
     <Using Include="Microsoft.Extensions.Logging" />
-    <Using Include="System.ComponentModel" />
-    <Using Include="System.Diagnostics;" />
     <Using Include="System.Text" />
     <Using Include="System.Text.Json.Serialization" />
   </ItemGroup>
 
+  <!--
+    Plugins are discovered by FoehnAIV1 scanning a flat "Plugins" folder for DLLs.
+    Copy only this project's own primary output there (never its dependency DLLs -
+    FoehnAI.Abstractions and Logging.Abstractions must stay singly-loaded, resolved
+    from the host's own bin directory, so `is ITool` checks succeed across assemblies).
+  -->
    <Target Name="CopyToHostPlugins" AfterTargets="Build">
       <PropertyGroup>
          <HostPluginsDir>$(MSBuildThisFileDirectory)..\FoehnAIBuilder\.plugins\</HostPluginsDir>
@@ -41,6 +46,8 @@
          <PluginOutputFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
       </ItemGroup>
       <MakeDir Directories="$(HostPluginsDir)" />
-      <Copy SourceFiles="@(PluginOutputFiles)" DestinationFolder="$(HostPluginsDir)" SkipUnchangedFiles="true" />   </Target>
+      <Copy SourceFiles="@(PluginOutputFiles)" DestinationFolder="$(HostPluginsDir)" SkipUnchangedFiles="true" />
+   </Target>
+
 
 </Project>

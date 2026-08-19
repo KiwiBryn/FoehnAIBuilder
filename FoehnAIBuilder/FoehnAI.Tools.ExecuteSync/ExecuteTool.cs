@@ -1,9 +1,7 @@
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.ExecuteSync;
-using Microsoft.Extensions.Logging;
+using FoehnAI.Tools.ExecuteSync;
 
 namespace FoehnAIBuilder.Tools.ExecuteSync;
 
@@ -28,7 +26,8 @@ public sealed class ExecuteTool : ITool
 
     public string Description =>
         "Runs a command-line program (e.g. dotnet, git, npm) and returns its exit code, standard " +
-        "output, and standard error. Use for builds, tests, version control, or any other shell command.";
+        "output, and standard error. Use for builds, tests, version control, or any other shell command" +
+        "prefer execute_async";
 
     public string Command => """
         {
@@ -89,7 +88,7 @@ public sealed class ExecuteTool : ITool
         {
             process.Start();
 
-            // Without this, the child inherits FoehnSharpV1's own live console handle
+            // Without this, the child inherits FoehnAIBuilder's own live console handle
             // (since RedirectStandardInput alone doesn't disconnect it until closed), so
             // anything the child reads from stdin blocks forever - nobody is typing into
             // it on the child's behalf. Closing it immediately gives every spawned

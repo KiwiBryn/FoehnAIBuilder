@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
-
-namespace FoehnSharp.Tools.Rmdir;
+// Copyright (c) August 2026, devMobile Software
+// 
+namespace FoehnAI.Tools.Rmdir;
 
 internal sealed class RmdirArguments
 {

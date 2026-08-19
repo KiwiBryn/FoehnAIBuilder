@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
-
-namespace FoehnSharp.Tools.ExecuteSync;
+// Copyright (c) August 2026, devMobile Software
+// 
+namespace FoehnAI.Tools.ExecuteSync;
 
 internal sealed class ExecuteArguments
 {

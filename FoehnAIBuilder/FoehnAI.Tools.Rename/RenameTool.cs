@@ -1,7 +1,8 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.Rename;
+namespace FoehnAI.Tools.Rename;
 
 /// <summary>
 /// Renames or moves a file from one path to another.

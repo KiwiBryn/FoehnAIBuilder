@@ -1,7 +1,8 @@
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using Microsoft.Extensions.Logging;
 
-namespace FoehnSharp.Tools.Mkdir;
+namespace FoehnAI.Tools.Mkdir;
 
 /// <summary>
 /// Creates a directory, including any missing parent directories.

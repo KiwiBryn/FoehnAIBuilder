@@ -9,6 +9,7 @@
   <Project Path="FoehnAIBuilder/FoehnAI.Tools.Rename/FoehnAI.Tools.Rename.csproj" />
   <Project Path="FoehnAIBuilder/FoehnAI.Tools.Rmdir/FoehnAI.Tools.Rmdir.csproj" />
   <Project Path="FoehnAIBuilder/FoehnAI.Tools.Scan/FoehnAI.Tools.Scan.csproj" />
+  <Project Path="FoehnAIBuilder/FoehnAI.Tools.SearchFiles/FoehnAI.Tools.SearchFiles.csproj" />
   <Project Path="FoehnAIBuilder/FoehnAI.Tools.WriteFile/FoehnAI.Tools.WriteFile.csproj" />
   <Project Path="FoehnAIBuilder/FoehnAIBuilder/FoehnAIBuilder.csproj" />
   <Project Path="FoehnAIBuilder/MistralAI.Client.Mistral/MistralAI.Client.Mistral.csproj" />

@@ -1,9 +1,8 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
+﻿// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.ExecuteSync;
-using Microsoft.Extensions.Logging;
+using FoehnAI.Tools.ExecuteSync;
+
 
 namespace FoehnAIBuilder.Tools.Dotnet;
 
@@ -57,8 +56,7 @@ public sealed class DotnetTool : ITool
         }
         """;
 
-   // The command is arbitrary and its effects aren't known ahead of time, so treat it 
-   // as the most cautious tier - the same as delete/rmdir.
+   // The dotnet tool is "scoped" so for now not treated as a "destructive"
    public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
 
    public async Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
@@ -113,7 +111,7 @@ public sealed class DotnetTool : ITool
       {
          process.Start();
 
-         // Without this, the child inherits FoehnSharpV1's own live console handle
+         // Without this, the child inherits FoehnAI's own live console handle
          // (since RedirectStandardInput alone doesn't disconnect it until closed), so
          // anything the child reads from stdin blocks forever - nobody is typing into
          // it on the child's behalf. Closing it immediately gives every spawned

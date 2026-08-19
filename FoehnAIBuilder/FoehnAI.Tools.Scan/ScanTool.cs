@@ -1,7 +1,7 @@
-using System.Text;
+// Copyright (c) August 2026, devMobile Software
+// 
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.Scan;
-using Microsoft.Extensions.Logging;
+using FoehnAI.Tools.Scan;
 
 namespace FoehnAIBuilder.Tools.Scan;
 
