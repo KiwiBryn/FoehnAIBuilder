@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using FoehnAIBuilder.Abstractions;
-using FoehnSharp.Tools.ExecuteSync;
+using FoehnAI.Tools.ExecuteSync;
 using Microsoft.Extensions.Logging;
 
 namespace FoehnAIBuilder.Tools.Dotnet;
@@ -112,7 +112,7 @@ public sealed class DotnetTool : ITool
       {
          process.Start();
 
-         // Without this, the child inherits FoehnSharpV1's own live console handle
+         // Without this, the child inherits FoehnAI's own live console handle
          // (since RedirectStandardInput alone doesn't disconnect it until closed), so
          // anything the child reads from stdin blocks forever - nobody is typing into
          // it on the child's behalf. Closing it immediately gives every spawned

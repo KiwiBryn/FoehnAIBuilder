@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoehnSharp.Tools.ExecuteSync;
+namespace FoehnAI.Tools.ExecuteSync;
 
 internal sealed class DotnetArguments
 {
