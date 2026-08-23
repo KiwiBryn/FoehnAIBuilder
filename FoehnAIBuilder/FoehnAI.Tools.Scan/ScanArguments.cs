@@ -1,4 +1,7 @@
-namespace FoehnAI.Tools.Scan;
+// Copyright (c) August 2026, devMobile Software
+// 
+namespace FoehnAIBuilder.Tool.Scan;
+
 
 internal sealed class ScanArguments
 {
