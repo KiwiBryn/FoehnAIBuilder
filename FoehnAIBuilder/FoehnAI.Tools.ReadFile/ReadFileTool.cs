@@ -8,18 +8,11 @@ namespace FoehnAIBuilder.Tools.ReadFile;
 /// <summary>
 /// Reads and returns the full text contents of a file.
 /// </summary>
-public sealed class ReadFileTool : ITool
+public sealed class ReadFileTool(ILogger<ReadFileTool> logger) : ITool
 {
     private const int MaxCharacters = 200_000;
 
-    private readonly ILogger<ReadFileTool> _logger;
-
-    public ReadFileTool(ILogger<ReadFileTool> logger)
-    {
-        _logger = logger;
-    }
-
-    public string Name => "read_file";
+   public string Name => "file.read";
 
     public string Description => "Reads and returns the full text contents of a file at the given path.";
 
@@ -39,7 +32,7 @@ public sealed class ReadFileTool : ITool
     {
         if (!ToolArguments.TryParse(argumentsJson, ReadFileJsonContext.Default.ReadFileArguments, out var args, out var jsonError))
         {
-            _logger.LogWarning("Failed to parse read_file arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse file.read arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return ToolExecutionResult.Fail(jsonError!);
         }
 
@@ -47,7 +40,7 @@ public sealed class ReadFileTool : ITool
         if (!ToolPath.TryResolve(path, out var fullPath, out var pathError))
             return ToolExecutionResult.Fail(pathError!);
 
-        _logger.LogInformation("Reading file {Path}", path);
+        logger.LogInformation("Reading file {Path}", path);
 
         if (!File.Exists(fullPath))
             return ToolExecutionResult.Fail($"File not found: {path}");
@@ -66,7 +59,8 @@ public sealed class ReadFileTool : ITool
         }
         catch (Exception ex) when (ex is UnauthorizedAccessException or IOException)
         {
-            _logger.LogError(ex, "Error reading file {Path}", path);
+            logger.LogError(ex, "Error reading file {Path}", path);
+
             return ToolExecutionResult.Fail($"Error reading \"{path}\": {ex.Message}");
         }
     }
