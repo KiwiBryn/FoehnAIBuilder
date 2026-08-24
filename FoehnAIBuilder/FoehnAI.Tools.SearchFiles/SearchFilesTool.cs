@@ -9,19 +9,12 @@ namespace FoehnAI.Tools.SearchFiles;
 /// locate matches without reading whole files blindly. Complements <c>scan</c>, which
 /// only lists file/directory names.
 /// </summary>
-public sealed class SearchFilesTool : ITool
+public sealed class SearchFilesTool(ILogger<SearchFilesTool> logger) : ITool
 {
     private const int MaxFilesScanned = 2000;
     private const int MaxMatches = 500;
 
-    private readonly ILogger<SearchFilesTool> _logger;
-
-    public SearchFilesTool(ILogger<SearchFilesTool> logger)
-    {
-        _logger = logger;
-    }
-
-    public string Name => "search_files";
+   public string Name => "files.search";
 
     public string Description =>
         "Searches the contents of files under a given directory tree for a text substring, " +
@@ -49,7 +42,7 @@ public sealed class SearchFilesTool : ITool
     {
         if (!ToolArguments.TryParse(argumentsJson, SearchFilesJsonContext.Default.SearchFilesArguments, out var args, out var jsonError))
         {
-            _logger.LogWarning("Failed to parse search_files arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse search_files arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return ToolExecutionResult.Fail(jsonError!);
         }
 
@@ -66,7 +59,7 @@ public sealed class SearchFilesTool : ITool
         if (!ToolPath.TryResolve(sandboxRoot, path, out var fullPath, out var pathError))
             return ToolExecutionResult.Fail(pathError!);
 
-        _logger.LogInformation(
+        logger.LogInformation(
             "Searching {Path} for {Text} (pattern={Pattern}, recursive={Recursive}, caseSensitive={CaseSensitive})",
             path, args.Text, pattern, recursive, caseSensitive);
 
@@ -81,7 +74,7 @@ public sealed class SearchFilesTool : ITool
         }
         catch (Exception ex) when (ex is UnauthorizedAccessException or IOException)
         {
-            _logger.LogError(ex, "Error enumerating files under {Path}", path);
+            logger.LogError(ex, "Error enumerating files under {Path}", path);
             return ToolExecutionResult.Fail($"Error searching \"{path}\": {ex.Message}");
         }
 
@@ -126,7 +119,7 @@ public sealed class SearchFilesTool : ITool
             }
             catch (Exception ex) when (ex is UnauthorizedAccessException or IOException)
             {
-                _logger.LogWarning(ex, "Skipping file {File} during search_files", file);
+                logger.LogWarning(ex, "Skipping file {File} during search_files", file);
             }
         }
 
