@@ -13,7 +13,7 @@ public sealed class ScanTool(ILogger<ScanTool> logger) : ITool
 {
     private const int MaxEntries = 2000;
 
-   public string Name => "scan";
+   public string Name => "directories.Scan";
 
     public string Description =>
         "Recursively lists files and directories under a given path, or the current working " +
