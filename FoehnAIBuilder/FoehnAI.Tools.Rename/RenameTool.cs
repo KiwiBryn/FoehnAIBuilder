@@ -16,11 +16,7 @@ public sealed class RenameTool : ITool
         _logger = logger;
     }
 
-    public string Name => "rename";
-
-    public string Description => "Renames or moves a file from one path to another.";
-
-    public string Command => """
+   public string Command => """
         {
           "type": "object",
           "properties": {
