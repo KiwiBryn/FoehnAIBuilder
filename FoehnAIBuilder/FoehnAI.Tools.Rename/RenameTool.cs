@@ -29,7 +29,11 @@ public sealed class RenameTool : ITool
 
     public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
 
-    public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
+   public string Name => "rename";
+
+   public string Description => "Renames or moves a file from one path to another.";
+
+   public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
     {
         if (!ToolArguments.TryParse(argumentsJson, RenameJsonContext.Default.RenameArguments, out var args, out var jsonError))
         {

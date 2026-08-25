@@ -9,19 +9,12 @@ namespace FoehnAI.Tools.SearchFiles;
 /// locate matches without reading whole files blindly. Complements <c>scan</c>, which
 /// only lists file/directory names.
 /// </summary>
-public sealed class SearchFilesTool : ITool
+public sealed class SearchFilesTool(ILogger<SearchFilesTool> logger) : ITool
 {
    private const int MaxFilesScanned = 2000;
    private const int MaxMatches = 500;
 
-    private readonly ILogger<SearchFilesTool> _logger;
-
-    public SearchFilesTool(ILogger<SearchFilesTool> logger)
-    {
-        _logger = logger;
-    }
-
-    public string Name => "search_files";
+   public string Name => "search_files";
 
    public string Description =>
        "Searches the contents of files under a given directory tree for a text substring, " +
