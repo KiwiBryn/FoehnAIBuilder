@@ -14,6 +14,7 @@ public sealed class RenameTool(ILogger<RenameTool> logger) : ITool
    public string Description => "Renames or moves a file from one path to another.";
 
    public string Command => """
+        {
           "type": "object",
           "properties": {
             "sourcePath": { "type": "string", "description": "The current path of the file." },
