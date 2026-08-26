@@ -10,7 +10,7 @@ public sealed class FoehnAIBuilderOptions
     /// <summary>
     /// The system message sent to the LLM at the start of every conversation.
     /// </summary>
-    public string SystemMessage { get; set; } = string.Empty;
+    public string SystemMessageFile { get; set; } = string.Empty;
 
     /// <summary>
     /// Directory to scan for tool plugin DLLs at startup, relative to the application's

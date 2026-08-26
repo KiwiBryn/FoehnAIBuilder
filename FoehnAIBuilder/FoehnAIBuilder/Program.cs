@@ -37,6 +37,7 @@ builder.Services.Configure<FoehnAIBuilderOptions>(builder.Configuration.GetSecti
 builder.Services.AddTransient<ChatCompletionClient>();
 builder.Services.AddSingleton<IToolPluginLoader, ToolPluginLoader>();
 builder.Services.AddSingleton<IToolRegistry, ToolRegistry>();
+builder.Services.AddSingleton<ISystemPromptProvider, FileSystemPromptProvider>();
 builder.Services.AddSingleton<AgentSession>();
 
 using var host = builder.Build();
@@ -71,9 +72,11 @@ if (string.IsNullOrWhiteSpace(mistralOptions.ApiKey))
 
 // Resolving the registry triggers plugin discovery/loading.
 var toolRegistry = host.Services.GetRequiredService<IToolRegistry>();
+var systemPromptProvider = host.Services.GetRequiredService<ISystemPromptProvider>();  
 var session = host.Services.GetRequiredService<AgentSession>();
 
 Console.WriteLine();
+Console.WriteLine($"System prompt file: {systemPromptProvider.SystemPromptFilename()}");
 Console.WriteLine($"Working folder: {Environment.CurrentDirectory}");
 Console.WriteLine($"{toolRegistry.Tools.Count} tool(s) loaded: {string.Join(", ", toolRegistry.Tools.Select(t => t.Name))}");
 Console.WriteLine("Commands: /quit, /context, /clear, /help");

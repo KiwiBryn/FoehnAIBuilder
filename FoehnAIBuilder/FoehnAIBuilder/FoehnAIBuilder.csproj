@@ -45,5 +45,10 @@
     <Using Include="System.Runtime.Loader" />
     <Using Include="System.Text.Json" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Foehn.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>
