@@ -1,5 +1,5 @@
 using FoehnAIBuilder.Abstractions;
-
+using FoehnAI.Tools.Scan;
 
 namespace FoehnAIBuilder.Tools.Scan;
 
@@ -7,25 +7,18 @@ namespace FoehnAIBuilder.Tools.Scan;
 /// Recursively (by default) lists files under a directory tree, so the LLM can see
 /// what exists before reading, writing, or executing anything.
 /// </summary>
-public sealed class ScanTool : ITool
+public sealed class ScanTool(ILogger<ScanTool> logger) : ITool
 {
     private const int MaxEntries = 2000;
 
-    private readonly ILogger<ScanTool> _logger;
-
-    public ScanTool(ILogger<ScanTool> logger)
-    {
-        _logger = logger;
-    }
-
-    public string Name => "scan";
+    public string Name => "folders.scan";
 
     public string Description =>
         "Recursively lists files and directories under a given path, or the current working " +
         "folder if no path is supplied. Use this first to discover what exists before reading, " +
         "writing, deleting, or executing anything.";
 
-    public string Command => $$"""
+    public string Command => """
         {
           "type": "object",
           "properties": {
@@ -46,7 +39,7 @@ public sealed class ScanTool : ITool
     {
         if (!ToolArguments.TryParse(argumentsJson, ScanJsonContext.Default.ScanArguments, out var args, out var jsonError))
         {
-            _logger.LogWarning("Failed to parse scan arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse scan arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return Task.FromResult(ToolExecutionResult.Fail(jsonError!));
         }
 
@@ -58,7 +51,7 @@ public sealed class ScanTool : ITool
         if (!ToolPath.TryResolve(sandboxRoot, path, out var fullPath, out var pathError))
             return Task.FromResult(ToolExecutionResult.Fail(pathError!));
 
-        _logger.LogInformation("Scanning {Path} (pattern={Pattern}, recursive={Recursive})", path, pattern, recursive);
+        logger.LogInformation("Scanning {Path} (pattern={Pattern}, recursive={Recursive})", path, pattern, recursive);
 
         if (!Directory.Exists(fullPath))
             return Task.FromResult(ToolExecutionResult.Fail($"Directory not found: {path}"));
@@ -106,7 +99,7 @@ public sealed class ScanTool : ITool
         }
         catch (Exception ex) when (ex is UnauthorizedAccessException or IOException)
         {
-            _logger.LogError(ex, "Error scanning {Path}", path);
+            logger.LogError(ex, "Error scanning {Path}", path);
             return Task.FromResult(ToolExecutionResult.Fail($"Error scanning \"{path}\": {ex.Message}"));
         }
     }
