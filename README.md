@@ -1,1 +1,90 @@
-# FoehnAIBuilder
+# FoehnAIBuilder  
+A deterministic, reproducible workflow engine for generating AI‑ready project scaffolds, configuration packs, and role‑specific prompt contexts.
+
+## Overview  
+**FoehnAIBuilder** is a lightweight orchestration tool that assembles platform‑specific and role‑specific configuration bundles for LLMs such as Mistral, Claude, and ChatGPT.  
+It focuses on **explicit control**, **repeatability**, and **audit‑friendly generation** — avoiding hidden conventions or “magic”.
+
+The project provides a structured way to define:
+
+- **Platforms** (.NET, Java, Rust, Go, PHP, Python, etc.)  
+- **Specialisations** (ASP.NET MVC, ASP.NET WebAPI, C#, Azure, Java Spring, Hibernate, etc.)  
+- **Roles** (Architect, Developer, Tester, Refactorer, Reviewer)
+
+These are combined into deterministic configuration sets that can be loaded into an LLM context to produce consistent outputs across different environments and personas.
+
+---
+
+## What FoehnAI Does
+
+### 1. Generates Platform Packs  
+Each platform has a dedicated configuration file describing conventions, folder layouts, patterns, and expectations.  
+Examples:  
+- `.NET` → solution structure, DI patterns, logging, middleware, versioning  
+- `Java` → Spring Boot conventions, Hibernate mappings  
+- `Rust` → cargo layout, module patterns  
+- `Python` → venv, packaging, dependency strategy
+
+### 2. Generates Role Packs  
+Roles define *how* the LLM should behave.  
+Examples:  
+- **Architect** → high‑level design, diagrams, flows, trade‑offs  
+- **Developer** → implementation detail, code correctness  
+- **Tester** → test plans, unit suites, integration tests  
+- **Refactorer** → improvements, simplification, readability  
+- **Reviewer** → critique, quality checks, anti‑patterns
+
+### 3. Combines Packs Deterministically  
+FoehnAIBuilder merges platform + specialisation + role into a single reproducible configuration set.  
+This ensures the LLM receives a **consistent persona and environment**, eliminating drift between sessions.
+
+### 4. Provides a Simple REPL‑Style Workflow  
+Load a configuration set into your LLM session and immediately begin generating code, architecture, or reviews with the correct persona and platform context.
+
+### 5. Supports Mistral AI Out‑of‑the‑Box  
+The project includes configuration for `https://api.mistral.ai` via `appsettings.json`.  
+Other providers can be added by extending the configuration model.
+
+---
+
+## How It Works (Step‑By‑Step)
+
+### 1. Define Your Platforms  
+Add or edit platform configuration files under the `Platforms/` folder.  
+Each file describes conventions, patterns, and expectations for that ecosystem.
+
+### 2. Define Your Roles  
+Add role definitions under `Roles/`.  
+These describe tone, responsibilities, and behavioural constraints.
+
+### 3. Define Specialisations  
+Add specialisation packs under `Specialisations/`.  
+These refine platform behaviour (e.g., ASP.NET WebAPI vs MVC).
+
+### 4. Select Your Combination  
+Choose:  
+- Platform  
+- Specialisation  
+- Role  
+
+FoehnAIBuilder merges them into a single deterministic configuration set.
+
+### 5. Load Into Your LLM  
+Paste the generated configuration into your LLM context (Mistral, Claude, ChatGPT, etc.).  
+Your LLM now behaves consistently according to the selected persona and platform.
+
+### 6. Generate Code, Architecture, Tests, Reviews  
+With the configuration loaded, you can request:  
+- Architecture diagrams  
+- API designs  
+- Code generation  
+- Refactoring  
+- Reviews  
+- Test suites  
+- Documentation  
+
+All outputs follow the conventions defined in your packs.
+
+---
+
+## Project Structure  
