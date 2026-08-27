@@ -2,7 +2,12 @@
 A deterministic, reproducible workflow engine for generating AI‑ready project scaffolds, configuration packs, and role‑specific prompt contexts.
 
 ## Overview  
-**FoehnAIBuilder** is a lightweight orchestration tool that assembles platform‑specific and role‑specific configuration bundles for LLMs such as Mistral, Claude, and ChatGPT.  
+**FoehnAIBuilder** is a lightweight MistralAIclient that assembles platform‑specific and role‑specific configuration bundles and implemtrndy s REPL loop and mages LLM sessions.
+
+IT can clear, save and load the LLM context, and has plugins for accessing the local computer. The client has risk levels for plug-ins and has an interactive authorisation model. 
+
+Future extensions for the plugins include ML scoring the risk of a commandline and skills file management.
+
 It focuses on **explicit control**, **repeatability**, and **audit‑friendly generation** - avoiding hidden conventions or “magic”.
 
 The project provides a structured way to define:
