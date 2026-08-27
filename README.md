@@ -89,6 +89,7 @@ All outputs follow the conventions defined in your packs.
 ---
 
 ## Project Structure  
+<pre>
 
 FoehnAIBuilder/
  ├── FoehnAIBuilder.sln              # Solution file
@@ -103,6 +104,7 @@ FoehnAIBuilder/
       ├── appsettings.json           # MistralAI config + provider settings
       ├── FoehnAIBuilder.csproj      # Project file
       └── Program.cs                 # Entry point / REPL-style runner
+</pre> 
 
 
 
