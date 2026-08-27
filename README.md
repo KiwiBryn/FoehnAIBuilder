@@ -3,13 +3,14 @@ A deterministic, reproducible workflow engine for generating AI‑ready project 
 
 ## Overview  
 **FoehnAIBuilder** is a lightweight orchestration tool that assembles platform‑specific and role‑specific configuration bundles for LLMs such as Mistral, Claude, and ChatGPT.  
-It focuses on **explicit control**, **repeatability**, and **audit‑friendly generation** — avoiding hidden conventions or “magic”.
+It focuses on **explicit control**, **repeatability**, and **audit‑friendly generation** - avoiding hidden conventions or “magic”.
 
 The project provides a structured way to define:
 
 - **Platforms** (.NET, Java, Rust, Go, PHP, Python, etc.)  
 - **Specialisations** (ASP.NET MVC, ASP.NET WebAPI, C#, Azure, Java Spring, Hibernate, etc.)  
 - **Roles** (Architect, Developer, Tester, Refactorer, Reviewer)
+- **Integration** working on tight integtration with [Matt Pocock's skills](https://github.com/mattpocock/skills)
 
 These are combined into deterministic configuration sets that can be loaded into an LLM context to produce consistent outputs across different environments and personas.
 
