@@ -22,10 +22,10 @@ public sealed class ExecuteTool : ITool
         _logger = logger;
     }
 
-    public string Name => "execute_sync";
+    public string Name => "invoke.sync";
 
     public string Description =>
-        "Runs a command-line program (e.g. dotnet, git, npm) and returns its exit code, standard " +
+        "Runs a command-line program (e.g. git, npm) and returns its exit code, standard " +
         "output, and standard error. Use for builds, tests, version control, or any other shell command" +
         "prefer execute_async";
 

@@ -14,8 +14,11 @@ public enum ToolRiskLevel
     /// <summary>The tool only inspects state - it cannot modify the file system or run other programs.</summary>
     ReadOnly,
 
-    /// <summary>The tool creates or modifies state (e.g. writing a file, creating a directory) without removing existing data.</summary>
-    Write,
+   /// <summary>The tool is a an application that is very limited in scope and is not expected to modify state in a destructive way. The host trusts the tool to be safe.</summary>
+   Trusted,
+
+   /// <summary>The tool creates or modifies state (e.g. writing a file, creating a directory) without removing existing data.</summary>
+   Write,
 
     /// <summary>The tool can remove or overwrite state in a way that is hard or impossible to undo.</summary>
     Destructive,

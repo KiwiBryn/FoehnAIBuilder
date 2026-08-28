@@ -33,11 +33,15 @@ public sealed class RenameTool : ITool
 
     public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
 
+<<<<<<< Updated upstream
     public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
+=======
+   public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
+>>>>>>> Stashed changes
     {
         if (!ToolArguments.TryParse(argumentsJson, RenameJsonContext.Default.RenameArguments, out var args, out var jsonError))
         {
-            _logger.LogWarning("Failed to parse rename arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse rename arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return Task.FromResult(ToolExecutionResult.Fail(jsonError!));
         }
 

@@ -24,32 +24,48 @@ public sealed class DotnetTool : ITool
       _logger = logger;
    }
 
-   public string Name => "dotnet";
+   public string Name => "invoke.dotnet";
    private static readonly HashSet<string> AllowedCommands = new()
     {
+        "add",
+        "new sln",
+        "new project",
+        "new --list",
         "new",
+        "format",
+        "list",
         "build",
         "run",
         "test",
+        "remove",  // Maybe not needed, but included for completeness
         "restore",
         "clean",
+        "sln add",
+        "add package",
+        "list package",
+        "remove package",
+        "tool list",
+        "tool install --global", 
+        "ef",
         "--list-sdks",
         "--list-runtimes",
         "--info",
-        "--help" 
+        "--help",
+        "--version",
+        "--info"
    };
 
    public string Description =>
-       "Runs a restricted dotnet CLI subcommand (new, build, run, test, restore, clean, --list-sdks, " +
-       "--list-runtimes, --info, --help) and returns its exit code, standard output, and standard error. " +
-       "For anything outside this subcommand list, use execute_sync/execute_async instead.";
+       $@"Runs a restricted dotnet CLI subcommand( {string.Join(",", AllowedCommands)})" +
+       "and returns its exit code, standard output, and standard error." +
+       "For anything outside this subcommand list, use execute.sync instead.";
 
-   public string Command => """
+   public string Command => $$"""
         {
           "type": "object",
           "properties": {
-            "arguments": { "type": "string", "description": "The dotnet subcommand and its arguments, as a single string, e.g. 'build MyProject.csproj' or 'test --filter Category=Fast'. The first word must be one of: new, build, run, test, restore, clean, --list-sdks, --list-runtimes, --info, --help." },
-            "workingDirectory": { "type": "string", "description": "Working directory for the process. Defaults to the application's current working folder." },
+            "arguments": { "type": "string", "description": "The dotnet subcommand and its arguments, as a single string, e.g. 'build MyProject.csproj'. The command line must start with of : {{string.Join(",", AllowedCommands)}}." },
+            "workingDirectory": { "type": "string", "description": "the working directory for the process. Defaults to the application's current working folder." },
             "timeoutSeconds": { "type": "integer", "description": "Maximum seconds to wait before the process is killed. Defaults to 120." }
           },
           "required": ["arguments"]
@@ -57,7 +73,7 @@ public sealed class DotnetTool : ITool
         """;
 
    // The dotnet tool is "scoped" so for now not treated as a "destructive"
-   public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
+   public ToolRiskLevel RiskLevel => ToolRiskLevel.Trusted;
 
    public async Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
    {
