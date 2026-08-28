@@ -1,12 +1,30 @@
 # FoehnAIBuilder  
-A deterministic, reproducible workflow engine for generating AI‑ready project scaffolds, configuration packs, and role‑specific prompt contexts.
+
+A deterministic, reproducible LLM client for generating AI‑ready project documentation, scaffolds, configuration packs, and role‑specific prompt contexts.
+
+The aim of this series of projects was to "bootstrap" with the [MistralAI Chat Completion API](https://docs.mistral.ai/studio/conversations/chat-completion), and an HTTP Proxy, enough of a "non-agentic" client to build an "agentic" client.
+
+***Why Foehn***
+The name *Mistral* is a regional downslope wind in Europe, and the name of the high‑performance [AI platform](https://docs.mistral.ai/) that powers my client.  
+
+### Foehn-Type Winds Around the World
+
+Foehn winds occur globally under different regional names:
+
+- **Chinook** — Rocky Mountains (USA/Canada)
+- **Zonda** — Andes (Argentina)
+- **Halny** — Tatra Mountains (Poland/Slovakia)
+- **Nor’wester** — Southern Alps (New Zealand)
+- **Mistral** — Southern France; a strong, dry downslope wind flowing from the Alps toward the Mediterranean
+
+Although the *Mistral* is not a classic foehn in every meteorological treatment, it shares the same core dynamics: air descends, compresses, and warms, producing dry, gusty conditions.
 
 ## Overview  
-**FoehnAIBuilder** is a lightweight MistralAIclient that assembles platform‑specific and role‑specific configuration bundles and implemtrndy s REPL loop and mages LLM sessions.
+**FoehnAIBuilder** is a lightweight MistralAI client that implements a REPL loop and manages LLM sessions.
 
-IT can clear, save and load the LLM context, and has plugins for accessing the local computer. The client has risk levels for plug-ins and has an interactive authorisation model. 
+It can clear, save and load the LLM context, and has plugins for accessing the local computer. The client has risk levels for plug-ins and has an interactive authorisation model. 
 
-Future extensions for the plugins include ML scoring the risk of a commandline and skills file management.
+Future extensions for the plugins include ML scoring the risk of a command line and a plug-in for web access using the [Kagi API](https://kagi.com/)
 
 It focuses on **explicit control**, **repeatability**, and **audit‑friendly generation** - avoiding hidden conventions or “magic”.
 
