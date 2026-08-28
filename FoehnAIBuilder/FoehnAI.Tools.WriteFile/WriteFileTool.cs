@@ -8,20 +8,9 @@ namespace FoehnAI.Tools.WriteFile;
 /// Writes text content to a file, creating the file (and any missing parent
 /// directories) if it doesn't already exist.
 /// </summary>
-public sealed class WriteFileTool : ITool
+public sealed class WriteFileTool(ILogger<WriteFileTool> logger) : ITool
 {
-<<<<<<< Updated upstream
-    private readonly ILogger<WriteFileTool> _logger;
-
-    public WriteFileTool(ILogger<WriteFileTool> logger)
-    {
-        _logger = logger;
-    }
-
-    public string Name => "write_file";
-=======
    public string Name => "file.write";
->>>>>>> Stashed changes
 
     public string Description =>
         "Writes text content to a file at the given path, creating the file (and any missing " +
@@ -45,11 +34,7 @@ public sealed class WriteFileTool : ITool
     {
         if (!ToolArguments.TryParse(argumentsJson, WriteFileJsonContext.Default.WriteFileArguments, out var args, out var jsonError))
         {
-<<<<<<< Updated upstream
-            _logger.LogWarning("Failed to parse write_file arguments: {Arguments} ({Error})", argumentsJson, jsonError);
-=======
             logger.LogWarning("Failed to parse file.write arguments: {Arguments} ({Error})", argumentsJson, jsonError);
->>>>>>> Stashed changes
             return ToolExecutionResult.Fail(jsonError!);
         }
 
@@ -63,7 +48,7 @@ public sealed class WriteFileTool : ITool
         if (!overwrite && File.Exists(fullPath))
             return ToolExecutionResult.Fail($"File already exists and overwrite is false: {path}");
 
-        _logger.LogInformation("Writing {Length} characters to {Path}", content.Length, path);
+        logger.LogInformation("Writing {Length} characters to {Path}", content.Length, path);
 
         try
         {
@@ -76,7 +61,7 @@ public sealed class WriteFileTool : ITool
         }
         catch (Exception ex) when (ex is UnauthorizedAccessException or IOException)
         {
-            _logger.LogError(ex, "Error writing file {Path}", path);
+            logger.LogError(ex, "Error writing file {Path}", path);
             return ToolExecutionResult.Fail($"Error writing \"{path}\": {ex.Message}");
         }
     }
