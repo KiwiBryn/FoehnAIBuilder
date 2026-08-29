@@ -40,9 +40,11 @@ public sealed class DotnetTool : ITool
    };
 
    public string Description =>
-       "Runs a restricted dotnet CLI subcommand (new, build, run, test, restore, clean, --list-sdks, " +
-       "--list-runtimes, --info, --help) and returns its exit code, standard output, and standard error. " +
-       "For anything outside this subcommand list, use execute_sync/execute_async instead.";
+       $@"Runs a restricted dotnet CLI subcommand( {string.Join(",", AllowedCommands)})" +
+       "and returns its exit code, standard output, and standard error." +
+       "When creating new projects, the LLM is trusted to choose the project type and name, but every run is bounded by a timeout." +
+       "solutions and projects are created a subdirectory of the same name as the project, and the LLM is trusted to choose the project type and name." +
+       "For anything outside this subcommand list, use invoke.sync instead.";
 
    public string Command => """
         {
