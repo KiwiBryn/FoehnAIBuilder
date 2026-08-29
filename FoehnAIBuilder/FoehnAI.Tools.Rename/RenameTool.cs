@@ -34,7 +34,7 @@ public sealed class RenameTool(ILogger<RenameTool> logger) : ITool
     {
         if (!ToolArguments.TryParse(argumentsJson, RenameJsonContext.Default.RenameArguments, out var args, out var jsonError))
         {
-            _logger.LogWarning("Failed to parse rename arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse rename arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return Task.FromResult(ToolExecutionResult.Fail(jsonError!));
         }
 

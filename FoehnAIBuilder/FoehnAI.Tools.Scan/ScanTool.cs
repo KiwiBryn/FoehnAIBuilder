@@ -1,6 +1,6 @@
-// Copyright (c) August 2026, devMobile Software
-// 
+using FoehnAI.Tools.Scan;
 using FoehnAIBuilder.Abstractions;
+
 
 
 namespace FoehnAIBuilder.Tool.Scan;
@@ -13,20 +13,23 @@ public sealed class ScanTool(ILogger<ScanTool> logger) : ITool
 {
     private const int MaxEntries = 2000;
 
-   public string Name => "directories.Scan";
+   public string Name => "scan";
 
     public string Description =>
         "Recursively lists files and directories under a given path, or the current working " +
         "folder if no path is supplied. Use this first to discover what exists before reading, " +
         "writing, deleting, or executing anything.";
 
-    public string Command => """
+    public string Command => $$"""
         {
           "type": "object",
           "properties": {
             "path": { "type": "string", "description": "Directory to scan. Defaults to the application's current working folder if omitted." },
             "pattern": { "type": "string", "description": "Search pattern, e.g. '*.cs'. Defaults to '*' (all files)." },
-            "recursive": { "type": "boolean", "description": "Whether to recurse into subdirectories. Defaults to true." }
+            "recursive": { "type": "boolean", "description": "Whether to recurse into subdirectories. Defaults to true." },
+            "ignoreFiles": { "type": "array", "items": { "type": "string" }, "description": "List of file names to ignore (e.g., [\"temp.txt\", \"backup.dat\"])." },
+            "ignoreExtensions": { "type": "array", "items": { "type": "string" }, "description": "List of file extensions to ignore (e.g., [\".log\", \".tmp\"])." },
+            "ignoreFolders": { "type": "array", "items": { "type": "string" }, "description": "List of folder names to ignore (e.g., [\"node_modules\", \"bin\"])." }
           },
           "required": []
         }
@@ -59,6 +62,31 @@ public sealed class ScanTool(ILogger<ScanTool> logger) : ITool
         {
             var searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
             var files = Directory.EnumerateFiles(fullPath, pattern, searchOption).Take(MaxEntries + 1).ToList();
+
+            // Apply ignore filters
+            if (args.IgnoreFiles != null && args.IgnoreFiles.Length > 0)
+            {
+                files = files.Where(f => !args.IgnoreFiles.Contains(Path.GetFileName(f), StringComparer.OrdinalIgnoreCase)).ToList();
+            }
+
+            if (args.IgnoreExtensions != null && args.IgnoreExtensions.Length > 0)
+            {
+                files = files.Where(f => !args.IgnoreExtensions.Contains(Path.GetExtension(f), StringComparer.OrdinalIgnoreCase)).ToList();
+            }
+
+            if (args.IgnoreFolders != null && args.IgnoreFolders.Length > 0 && recursive)
+            {
+                files = files.Where(f => 
+                {
+                    var directory = Path.GetDirectoryName(f);
+                    if (directory == null) return true;
+                    
+                    var relativePath = Path.GetRelativePath(fullPath, directory);
+                    return !args.IgnoreFolders.Any(ignoreFolder => 
+                        relativePath.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                            .Contains(ignoreFolder, StringComparer.OrdinalIgnoreCase));
+                }).ToList();
+            }
 
             bool truncated = files.Count > MaxEntries;
             if (truncated)
