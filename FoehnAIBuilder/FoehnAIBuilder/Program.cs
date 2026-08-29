@@ -6,15 +6,15 @@ using FoehnAIBuilder.Chat;
 using MistralAI.Client;
 using MistralAI.Client.DTOs.Shared;
 
-const string SouthernAlps20x20 = @"
-         /\      
-      /\_/ \      /\ 
-     /  \   \    /  \
-    / /\ \___\  / /\ \
-   /_/  \     \/  \  \
-  /  \   \     \   \  \
- / /\ \___\   / \___\ \
-/_/  \     \_/      \_\
+const string SouthernAlps20x20 = @" 
+        /\       
+     /\_/ \      /\ 
+    /  \   \    /  \
+   / /\ \___\  / /\ \
+  /_/  \     \/  \  \
+ /  \   \     \   \  \
+/ /\ \___\   / \___\ \
+/_/  \     \_/      \_\ 
 devMobile Software NZ © 2026-08";
 
 var builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
@@ -79,7 +79,15 @@ Console.WriteLine();
 Console.WriteLine($"System prompt file: {systemPromptProvider.SystemPromptFilename()}");
 Console.WriteLine($"Working folder: {Environment.CurrentDirectory}");
 Console.WriteLine($"{toolRegistry.Tools.Count} tool(s) loaded: {string.Join(", ", toolRegistry.Tools.Select(t => t.Name))}");
-Console.WriteLine("Commands: /quit, /context, /clear, /help");
+
+// List available skills
+var availableSkills = systemPromptProvider.GetAvailableSkills();
+if (availableSkills.Count > 0)
+{
+   Console.WriteLine($"Available skills: {string.Join(", ", availableSkills.Select(s => $"/{s}"))}");
+}
+
+Console.WriteLine("Commands: /quit, /context, /clear, /help, /skills");
 Console.WriteLine();
 
 using var cts = new CancellationTokenSource();
@@ -102,7 +110,7 @@ while (!cts.IsCancellationRequested)
 
    if (input.StartsWith('/'))
    {
-      if (HandleCommand(input, session))
+      if (HandleCommand(input, session, systemPromptProvider))
          break;
       continue;
    }
@@ -136,26 +144,87 @@ Console.WriteLine("Goodbye!");
 return 0;
 
 // Returns true when the REPL should exit.
-bool HandleCommand(string command, AgentSession agentSession)
+bool HandleCommand(string command, AgentSession agentSession, ISystemPromptProvider systemPromptProvider)
 {
-   switch (command.ToLowerInvariant())
+   if (command.Length == 1)
    {
-      case "/quit":
+      Console.WriteLine("Unknown command. Available commands: /quit, /context, /clear, /help, /skills");
+      return false;
+   }
+
+   var commandParts = command.Substring(1).Split(' ', 2);
+   var commandName = commandParts[0].ToLowerInvariant();
+   var commandArgument = commandParts.Length > 1 ? commandParts[1] : string.Empty;
+
+   switch (commandName)
+   {
+      case "quit":
          return true;
 
-      case "/context":
+      case "context":
          PrintContext(agentSession.History);
          return false;
 
-      case "/clear":
+      case "clear":
          agentSession.ClearContext();
          Console.WriteLine("Context cleared (system prompt kept).");
          return false;
 
-      default:
-         Console.WriteLine($"Unknown command: {command}. Available commands: /quit, /context, /clear");
+      case "help":
+         ShowHelp();
          return false;
+
+      case "skills":
+         ShowAvailableSkills(systemPromptProvider);
+         return false;
+
+      default:
+         // Check if this is a skill command
+         var skillContent = systemPromptProvider.LoadSkill(commandName);
+         if (skillContent != null)
+         {
+            Console.WriteLine($"Loading skill: {commandName}");
+            Console.WriteLine($"Skill content:");
+            Console.WriteLine(skillContent);
+            Console.WriteLine();
+            return false;
+         }
+         else
+         {
+            Console.WriteLine($"Unknown command or skill: {command}. Available commands: /quit, /context, /clear, /help, /skills");
+            return false;
+         }
    }
+}
+
+void ShowHelp()
+{
+   Console.WriteLine("Available commands:");
+   Console.WriteLine("  /quit          - Exit the application");
+   Console.WriteLine("  /context       - Show the current conversation context");
+   Console.WriteLine("  /clear         - Clear the conversation context (keeps system prompt)");
+   Console.WriteLine("  /help          - Show this help message");
+   Console.WriteLine("  /skills        - List available skills");
+   Console.WriteLine("  /<skillname>   - Load and display a specific skill");
+   Console.WriteLine();
+}
+
+void ShowAvailableSkills(ISystemPromptProvider systemPromptProvider)
+{
+   var availableSkills = systemPromptProvider.GetAvailableSkills();
+   
+   if (availableSkills.Count == 0)
+   {
+      Console.WriteLine("No skills available.");
+      return;
+   }
+
+   Console.WriteLine("Available skills (use /<skillname> to load):");
+   foreach (var skill in availableSkills)
+   {
+      Console.WriteLine($"  /{skill}");
+   }
+   Console.WriteLine();
 }
 
 void PrintContext(IReadOnlyList<MessageBase> history)

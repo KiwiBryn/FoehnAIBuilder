@@ -1,0 +1,1 @@
+You have access to file system skills. You can scan directories, read files, write files, create directories, rename files, and delete files. Use this skill when asked to manage files and directories.

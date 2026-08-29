@@ -1,0 +1,1 @@
+You have access to C# programming skills. You can write, compile, and run C# code. Use this skill when asked to create C# applications, libraries, or scripts.

@@ -1,0 +1,1 @@
+You have access to .NET CLI skills. You can create, build, run, and manage .NET projects using the dotnet command-line interface. Use this skill when asked to work with .NET projects.

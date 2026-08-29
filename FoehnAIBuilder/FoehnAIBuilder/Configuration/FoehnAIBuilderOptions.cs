@@ -19,6 +19,11 @@ public sealed class FoehnAIBuilderOptions
     public string PluginsPath { get; set; } = ".Plugins";
 
    /// <summary>
+   /// Directory to scan for skill markdown files at startup, relative to the application's 
+   /// </summary>
+   public string SkillsPath { get; set; } = ".Skills";
+
+   /// <summary>
    /// Working directory tools should operate in when a path isn't explicitly rooted.
    /// Empty means "use the process's current directory".
    /// </summary>
