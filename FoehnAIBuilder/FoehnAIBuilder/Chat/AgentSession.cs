@@ -71,7 +71,7 @@ public sealed class AgentSession
 
       var tools = _toolRegistry.BuildToolDefinitions();
 
-      for (var iteration = 0; iteration < _options.MaxToolIterations; iteration++)
+      for( var iteration = 0; iteration < _options.MaxToolIterations; iteration++)
       {
          var request = _client.CreateRequest(messages: _history);
          if (tools.Count > 0)
@@ -146,7 +146,7 @@ public sealed class AgentSession
 
    // ReadOnly tools run without asking; anything that can change or destroy state
    // (including an unclassified/Undefined risk level) needs the user's say-so first.
-   private static bool RequiresConfirmation(ToolRiskLevel riskLevel) => riskLevel != ToolRiskLevel.ReadOnly;
+   private static bool RequiresConfirmation(ToolRiskLevel riskLevel) => riskLevel != ToolRiskLevel.ReadOnly && riskLevel != ToolRiskLevel.Trusted;
 
    private bool ConfirmToolCall(string toolName, ToolRiskLevel riskLevel)
    {

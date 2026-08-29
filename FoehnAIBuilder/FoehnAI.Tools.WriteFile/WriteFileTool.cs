@@ -10,7 +10,7 @@ namespace FoehnAI.Tools.WriteFile;
 /// </summary>
 public sealed class WriteFileTool(ILogger<WriteFileTool> logger) : ITool
 {
-   public string Name => "write_file";
+   public string Name => "file.write";
 
     public string Description =>
         "Writes text content to a file at the given path, creating the file (and any missing " +
@@ -34,7 +34,7 @@ public sealed class WriteFileTool(ILogger<WriteFileTool> logger) : ITool
     {
         if (!ToolArguments.TryParse(argumentsJson, WriteFileJsonContext.Default.WriteFileArguments, out var args, out var jsonError))
         {
-            logger.LogWarning("Failed to parse write_file arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse file.write arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return ToolExecutionResult.Fail(jsonError!);
         }
 

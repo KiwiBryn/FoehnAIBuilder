@@ -26,10 +26,6 @@ public sealed class RenameTool(ILogger<RenameTool> logger) : ITool
 
    public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
 
-   public string Name => "rename";
-
-   public string Description => "Renames or moves a file from one path to another.";
-
    public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
     {
         if (!ToolArguments.TryParse(argumentsJson, RenameJsonContext.Default.RenameArguments, out var args, out var jsonError))
