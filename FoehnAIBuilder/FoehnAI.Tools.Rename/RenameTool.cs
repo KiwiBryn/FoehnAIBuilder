@@ -7,16 +7,9 @@ namespace FoehnAI.Tools.Rename;
 /// <summary>
 /// Renames or moves a file from one path to another.
 /// </summary>
-public sealed class RenameTool : ITool
+public sealed class RenameTool(ILogger<RenameTool> logger) : ITool
 {
-    private readonly ILogger<RenameTool> _logger;
-
-    public RenameTool(ILogger<RenameTool> logger)
-    {
-        _logger = logger;
-    }
-
-    public string Name => "rename";
+   public string Name => "rename";
 
     public string Description => "Renames or moves a file from one path to another.";
 
@@ -33,11 +26,11 @@ public sealed class RenameTool : ITool
 
     public ToolRiskLevel RiskLevel => ToolRiskLevel.Write;
 
-    public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
+   public Task<ToolExecutionResult> ExecuteAsync(string argumentsJson, CancellationToken cancellationToken = default)
     {
         if (!ToolArguments.TryParse(argumentsJson, RenameJsonContext.Default.RenameArguments, out var args, out var jsonError))
         {
-            _logger.LogWarning("Failed to parse rename arguments: {Arguments} ({Error})", argumentsJson, jsonError);
+            logger.LogWarning("Failed to parse rename arguments: {Arguments} ({Error})", argumentsJson, jsonError);
             return Task.FromResult(ToolExecutionResult.Fail(jsonError!));
         }
 
@@ -49,7 +42,7 @@ public sealed class RenameTool : ITool
         if (!ToolPath.TryResolve(destinationPath, out var destinationFullPath, out var destinationPathError))
             return Task.FromResult(ToolExecutionResult.Fail(destinationPathError!));
 
-        _logger.LogInformation("Renaming {SourcePath} to {DestinationPath}", sourcePath, destinationPath);
+        logger.LogInformation("Renaming {SourcePath} to {DestinationPath}", sourcePath, destinationPath);
 
         if (!File.Exists(sourceFullPath))
             return Task.FromResult(ToolExecutionResult.Fail($"Source file not found: {sourcePath}"));
@@ -68,7 +61,7 @@ public sealed class RenameTool : ITool
         }
         catch (Exception ex) when (ex is UnauthorizedAccessException or IOException)
         {
-            _logger.LogError(ex, "Error renaming {SourcePath} to {DestinationPath}", sourcePath, destinationPath);
+            logger.LogError(ex, "Error renaming {SourcePath} to {DestinationPath}", sourcePath, destinationPath);
             return Task.FromResult(ToolExecutionResult.Fail($"Error renaming \"{sourcePath}\" to \"{destinationPath}\": {ex.Message}"));
         }
     }

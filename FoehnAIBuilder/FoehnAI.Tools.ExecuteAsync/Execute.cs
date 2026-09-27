@@ -21,7 +21,7 @@ public sealed class Execute : ITool
         _logger = logger;
     }
 
-    public string Name => "execute_async";
+    public string Name => "invoke.async";
 
     public string Description =>
         "spawns/runs/launch a command-line program in its own console window and returns immediately, " +
